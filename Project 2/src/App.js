@@ -26,17 +26,17 @@ function App() {
     fetchData()
     }, [])
   
-  // const processeTours = () => {
-  //   console.log(tourData)
-  //   return tourData.map(item => {
-  //     const { id, name } = item
-  //     return name
-  //   })
-  // }
+  const processeTours = () => {
+    console.log(tourData)
+    return tourData.map(item => {
+      const { id, name } = item
+      return name
+    })
+  }
 
   return(
     <>
-      {isLoading ? <Loading></Loading> : "hello"}
+      {isLoading ? <Loading></Loading> : processeTours()}
     </>
 
   )
