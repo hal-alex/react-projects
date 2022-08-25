@@ -10,6 +10,11 @@ function App() {
   const [isLoading, setIsLoading] = useState(true)
   const [tourData, setTourData] = useState([])
 
+  const deleteTour = (id) => {
+    const updatedTours = tourData.filter((tour) => tour.id !== id)
+    setTourData(updatedTours)
+  }
+
   const fetchData = async () => {
     try {
       const response = await fetch(url)
@@ -18,6 +23,7 @@ function App() {
       console.log("tour data", tourData)
       setIsLoading(false)
     } catch (error) {
+      setIsLoading(false)
       console.log(error)
     }
   }
@@ -26,26 +32,21 @@ function App() {
     fetchData()
     }, [])
   
-  const processeTours = () => {
-    console.log(tourData)
-    return tourData.map(item => {
-      const { id, name, info, image, price } = item
+    if (tourData.length === 0) {
       return (
-        <>
-          <div>
-            <h3>{name}</h3>
-            <img src={image} alt="" />
-            <p>{info}</p>
-            <p>{price}</p>
+        <main>
+          <div className='title'>
+            <h3>All tours have been deleted</h3>
+            <button onClick={fetchData} className="btn">Get all tours</button>
           </div>
-        </>
+        </main>
       )
-    })
-  }
+ 
+    }
 
   return(
     <>
-      {isLoading ? <Loading></Loading> : processeTours()}
+      {isLoading ? <Loading></Loading> : <Tours tourData={tourData} deleteTour={deleteTour}></Tours>}
     </>
 
   )
