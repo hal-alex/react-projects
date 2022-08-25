@@ -29,8 +29,17 @@ function App() {
   const processeTours = () => {
     console.log(tourData)
     return tourData.map(item => {
-      const { id, name } = item
-      return name
+      const { id, name, info, image, price } = item
+      return (
+        <>
+          <div>
+            <h3>{name}</h3>
+            <img src={image} alt="" />
+            <p>{info}</p>
+            <p>{price}</p>
+          </div>
+        </>
+      )
     })
   }
 
@@ -43,6 +52,3 @@ function App() {
 }
 
 export default App
-{/* <>
-      {isLoading ? <Loading></Loading> : (processeTours())}
-    </> */}
