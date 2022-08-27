@@ -4,6 +4,8 @@ import { FaChevronLeft, FaChevronRight, FaQuoteRight } from 'react-icons/fa';
 
 const Review = () => {
 
+  // Second approach
+  
   const [personIndex, setPersonIndex] = useState(0)
   const { id, name, job, image, text } = people[personIndex]
 
@@ -32,6 +34,19 @@ const Review = () => {
 
   }
 
+  const generateRandomReview = () => {
+    let randomNumber = Math.floor(Math.random() * people.length)
+    console.log("before if statement", randomNumber)
+    // while (randomNumber === personIndex) {
+    //   generateRandomReview()
+    // }
+    if (randomNumber === personIndex) {
+      generateRandomReview()
+    }
+    console.log("after if statement", randomNumber)
+    setPersonIndex(randomNumber)
+  }
+
   return (
     <>
       <div>
@@ -41,12 +56,12 @@ const Review = () => {
         <p>{text}</p>
         <button onClick={leftReview}> <FaChevronLeft></FaChevronLeft> </button>
         <button onClick={rightReview}> <FaChevronRight></FaChevronRight> </button>
-        <button>Surpise Person</button>
+        <button onClick={generateRandomReview} >Surpise Person</button>
       </div>
     </>
   )
 
-
+ // First approach
   // const [userIndex, setUserIndex] = useState(1)
 
   // const handleclick = (e) => {
