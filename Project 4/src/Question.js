@@ -23,7 +23,6 @@ const Question = ({ id, title, info }) => {
         <p>{visiblity ? info : "" }</p>
         
     </ul>
-
     </>
   )
 };
