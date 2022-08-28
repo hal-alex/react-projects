@@ -37,12 +37,13 @@ const Review = () => {
   const generateRandomReview = () => {
     let randomNumber = Math.floor(Math.random() * people.length)
     console.log("before if statement", randomNumber)
-    // while (randomNumber === personIndex) {
+    while (randomNumber === personIndex) {
+      generateRandomReview()
+      return
+    }
+    // if (randomNumber === personIndex) {
     //   generateRandomReview()
     // }
-    if (randomNumber === personIndex) {
-      generateRandomReview()
-    }
     console.log("after if statement", randomNumber)
     setPersonIndex(randomNumber)
   }
