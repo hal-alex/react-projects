@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 const Jobs = (props) => {
 
-  const [displayJob, setDisplayJob] = useState("recAGJfiU4CeaV0HL")
+  const [displayJob, setDisplayJob] = useState(props.apiResponse[0].id)
 
   const makeButtons = () => {
     return ( <>
