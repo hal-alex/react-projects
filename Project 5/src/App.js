@@ -16,19 +16,26 @@ function App() {
       })
       setCategories(["all", ...new Set(onlyButtons)])
     }
-
     buttons()
   }, [])
 
   return (
-    <>
-      {categories.map(category => {
-        return <button key={category} value={category} onClick={() => setSelectedCategory(category)}>{category}</button>
-      })}
-      <section>
-        {<Menu menu={menu} selectedCategory={selectedCategory}></Menu>}
+    <main>
+      <section className='menu section'>
+        <div className="title">
+              <h1>Alex's Food Menu</h1>
+              <div className="underline"></div>
+        </div>
+        <div className='btn-container'>
+          {categories.map(category => {
+            return <button className='filter-btn' key={category} value={category} onClick={() => setSelectedCategory(category)}>{category}</button>
+          })}
+        </div>
+        <section >
+          {<Menu menu={menu} selectedCategory={selectedCategory}></Menu>}
+        </section>
       </section>
-    </>
+    </main>
   )
 }
 
