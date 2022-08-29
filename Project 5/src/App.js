@@ -23,26 +23,10 @@ function App() {
   return (
     <>
       {categories.map(category => {
-        return <button value={category} onClick={() => setSelectedCategory(category)}>{category}</button>
+        return <button key={category} value={category} onClick={() => setSelectedCategory(category)}>{category}</button>
       })}
       <section>
-        {menu.map(item => {
-          const { id, title, category, price, img, desc } = item
-          if (selectedCategory === "all") {
-            return (
-              <>
-                <p>{title}</p>
-              </>
-            )}
-
-          else if (selectedCategory === category) {
-            return (
-              <>
-                <p>{title}</p>
-              </>
-            )
-          }
-        })}
+        {<Menu menu={menu} selectedCategory={selectedCategory}></Menu>}
       </section>
     </>
   )
