@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Menu from './Menu';
 import Categories from './Categories';
 import items from './data';
+import menu from './data';
 
 function App() {
 
   const [categories, setCategories] = useState([])
+  const [selectedCategory, setSelectedCategory] = useState("all")
+
   useEffect(() => {
     const buttons = () => {
       let onlyButtons = items.map(button => {
@@ -20,8 +23,11 @@ function App() {
   return (
     <>
       {categories.map(category => {
-        return <button>{category}</button>
+        return <button key={category} value={category} onClick={() => setSelectedCategory(category)}>{category}</button>
       })}
+      <section>
+        {<Menu menu={menu} selectedCategory={selectedCategory}></Menu>}
+      </section>
     </>
   )
 }
