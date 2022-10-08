@@ -1,11 +1,15 @@
 import React, { useContext } from 'react'
 import { FaBars } from 'react-icons/fa'
+import { AppContext } from "../src/context"
 
 const Home = () => {
+
+  const { openSideBar, openModal } = useContext(AppContext)
+
   return (
     <main>
-      <button className='sidebar-toggle'> <FaBars></FaBars></button>
-      <button className="btn">show modal</button>
+      <button className='sidebar-toggle' onClick={openSideBar}> <FaBars></FaBars></button>
+      <button className="btn" onClick={openModal}>show modal</button>
     </main>
   )
 }
