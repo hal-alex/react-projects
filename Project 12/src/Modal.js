@@ -8,7 +8,7 @@ const Modal = () => {
       <div className={`modal-overlay show-modal`}>
 
           <div className='modal-container'>
-            Testing <button><FaTimes></FaTimes></button>
+            Testing <button className='close-modal-btn'><FaTimes></FaTimes></button>
           </div>
         
     </div>
