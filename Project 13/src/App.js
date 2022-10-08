@@ -7,6 +7,10 @@ function App() {
   return (
     <>
       <h2>stripe submenus setup</h2>
+      <Navbar></Navbar>
+      <Hero></Hero>
+      <Sidebar></Sidebar>
+      <Submenu></Submenu>
     </>
   )
 }
