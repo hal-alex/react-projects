@@ -33,29 +33,39 @@ const Navbar = () => {
                 <li key={index}> <button 
                 className='link-btn' 
                 onMouseEnter={() => setHoveredItem(link.page)}
-                // onMouseEnter={() => handleHover(link.page)}
+                  onMouseLeave={() => setHoveredItem("") }
                 > {link.page} </button> </li>
               )
             })}
         </ul>
         <button className="btn signin-btn">Sign In</button>
       </div>
-      <aside className='submenu'>
-        <section>{selectedItem.map((item) => {
+      <aside 
+        onMouseEnter={() => setHoveredItem(hoveredItem)}
+        onMouseLeave={() => setHoveredItem("")}
+        className={`submenu ${hoveredItem ? "show" : ""}`}
+        
+        
+        >
+        <section
+        >{selectedItem.map((item) => {
           const { page, links } = item
+          console.log(links)
           return (
-            <div>
-              <h4>{ hoveredItem && page}</h4>
-              {/* {links.map((link) => {
+            <div className='submenu-center'>
+              <h4>{ page }</h4>
+              {links.map((link) => {
                   const { label, icon, url } = link
                   console.log(link)
                   return (
-                    <div> {label} </div>
+                    <div> {icon} {label} </div>
                   )
-              })} */}
+              })}
             </div>
           )
-        })}</section>
+        })}
+        
+        </section>
       </aside>
     </nav>
   )
