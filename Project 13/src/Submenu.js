@@ -3,19 +3,32 @@ import { useGlobalContext } from './context'
 
 const Submenu = () => {
 
-  const { isSubmenuOpen, location } = useGlobalContext()
+  const { isSubmenuOpen, location, page: {page, links} } = useGlobalContext()
+  // const {page, links } = page
   const container = useRef(null)
+  const [columns, setColumns] = useState("col-2")
 
   useEffect(() => {
+    setColumns(`col-${links.length}`)
     const submenu = container.current
     const { center, bottom } = location
     submenu.style.left = `${center}px`
     submenu.style.top = `${bottom}px`
-  }, [location])
+
+  }, [location, links])
+
 
   return (
     <aside className={` ${isSubmenuOpen ? "submenu show" : "submenu"} `} ref={container}>
-      submenu
+      <h4>{page}</h4>
+      <div className={`submenu-center ${columns}`}>
+        {links.map((link, index) => {
+          const {label, icon, url} = link
+          return (
+            <a href={url} key={index}> {icon} {label} </a>
+          )
+        })}
+      </div>
     </aside>
   )
 }
