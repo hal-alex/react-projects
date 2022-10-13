@@ -19,7 +19,18 @@ const AppProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(reducer, defaultValue)
 
-  const [cart, setCart] = useState(cartItems)
+  // const [cart, setCart] = useState(cartItems)
+
+  useEffect(() => {
+    const pullData = async () => {
+      dispatch({type: "LOADING"})
+      const data = await fetch(url)
+      const jsonData = await data.json()
+      dispatch({ type: "DISPLAY_CART_ITEMS", payload: jsonData })
+    }
+    pullData()
+  }, [])
+  
 
   const emptyCart = () => {
     dispatch({type: "REMOVE_ALL"})

@@ -1,4 +1,13 @@
 const reducer = (state, action) => {
+
+    if (action.type === "LOADING") {
+        return { ...state, loading: true }
+    }
+
+    if (action.type === "DISPLAY_CART_ITEMS") {
+        return {...state, loading: false, cart: action.payload}
+    }
+
     if (action.type === "REMOVE_ALL") {
         return {
             ...state, cart: []
@@ -42,10 +51,25 @@ const reducer = (state, action) => {
             ...state, cart: newCart
         }}
 
+    // if (action.type === "UPDATE_TOTAL") {
+    //     state.cart.map((item) => {
+    //         state.total += item.price
+    //     })
+
+    // }
+
     if (action.type === "UPDATE_TOTAL") {
-        state.cart.map((item) => {
-            state.total += item.price
+        const { total, amount } = state.cart.reduce((cartTotal, cartItem) => {
+            const { price, amount } = cartItem
+            cartTotal.amount += amount
+            cartTotal.total += price * amount
+            return cartTotal
+        }, {
+            total: 0, 
+            amount: 0
         })
+        
+        return { ...state, total, amount }
 
     }
     
