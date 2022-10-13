@@ -29,12 +29,27 @@ const AppProvider = ({ children }) => {
     dispatch({type: "REMOVE_SINGLE_ITEM", payload: id})
   }
 
+  const increaseAmount = (id) => {
+    dispatch({type: "INCREASE_AMOUNT", payload: id})
+  }
+
+  const decreaseAmount = (id) => {
+    dispatch({ type: "DECREASE_AMOUNT", payload: id })
+  }
+
+  useEffect(() => {
+    dispatch({type: "UPDATE_TOTAL"})
+  }, [state.cart])
+  
+
   return (
     <AppContext.Provider
       value={{
         ...state,
         emptyCart, 
         removeSingleItem,
+        increaseAmount, 
+        decreaseAmount, 
       }}
     >
       {children}
