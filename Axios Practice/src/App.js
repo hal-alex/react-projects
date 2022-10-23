@@ -1,5 +1,5 @@
 import Title from './components/Title';
-import SelectedComponent from './examples/3-post-request';
+import SelectedComponent from './examples/6-interceptors';
 function App() {
   return (
     <main>
