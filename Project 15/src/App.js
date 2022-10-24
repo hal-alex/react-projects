@@ -13,9 +13,9 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
-        <Route path="/about" element={<About></About>}></Route>
+        <Route path="about" element={<About></About>}></Route>
         <Route path="*" element={<Error></Error>}></Route>
-        <Route path="drinks/:cocktailId" element={<SingleCocktail></SingleCocktail>}></Route>
+        <Route path="drinks/:drinkId" element={<SingleCocktail></SingleCocktail>}></Route>
       </Routes>
     </BrowserRouter>
   )
