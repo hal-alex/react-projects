@@ -6,7 +6,9 @@ const Home = () => {
   return (
     <div>
       <SearchForm></SearchForm>
-      <CocktailList></CocktailList>
+      <section className="section">
+        <CocktailList></CocktailList>
+      </section>
     </div>
   )
 }

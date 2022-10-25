@@ -6,19 +6,31 @@ import { Link } from 'react-router-dom'
 
 const CocktailList = () => {
 
-  const { drinksList, searchTerm } = useGlobalContext()
+  const { drinksList, searchTerm, loading } = useGlobalContext()
 
-  const filteredResults = drinksList.filter(item => 
+  const filteredResults = drinksList.filter(item =>
     item["strDrink"].
-    toLowerCase().
-    includes(searchTerm.toLowerCase()))
+      toLowerCase().
+      includes(searchTerm.toLowerCase()))
 
-  console.log(filteredResults)
+  // console.log(filteredResults)
+
+    if (loading) {
+      return <Loading></Loading>
+    }
+
+  if (filteredResults.length < 1) {
+    return (
+      <section className="section-title">
+        <h4>Sorry, no results found</h4>
+      </section>
+    )
+  }
 
   return (
     <div className='cocktails-center'>
       {filteredResults.map(drink => {
-        const { strDrink, strDrinkThumb, idDrink } = drink
+        const { strDrink, strDrinkThumb, idDrink, strCategory } = drink
         return (
           <article className="" key={idDrink}>
 
@@ -27,6 +39,7 @@ const CocktailList = () => {
             </div>
             <div className="cocktail-footer">
               <h3>{strDrink}</h3>
+              <h5>{strCategory}</h5>
               <Link to={`/drinks/${idDrink}`}>
                 <button className='btn' >More Info</button>
               </Link>
@@ -37,6 +50,9 @@ const CocktailList = () => {
       })}
     </div>
   )
+
+
+
 }
 
 export default CocktailList
