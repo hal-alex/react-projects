@@ -1,6 +1,5 @@
 import React from 'react'
-import { Link, useParams } from 'react-router-dom'
-import { useGlobalContext } from '../context'
+
 const Cocktail = ( { drink } ) => {
 
   if (!drink) {
