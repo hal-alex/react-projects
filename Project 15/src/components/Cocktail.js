@@ -17,6 +17,7 @@ const Cocktail = ( { drink } ) => {
   const ingredients = drinkArray.filter(item => item[0].includes("strIngredient"))
   // console.log("ing", ingredients)
   return (
+    
     <div>
       <h2 className="section-title">{strDrink}</h2>
       <div className="drink">
