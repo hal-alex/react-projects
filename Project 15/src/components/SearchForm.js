@@ -3,18 +3,22 @@ import { useGlobalContext } from '../context'
 
 const SearchForm = () => {
   const { setSearchTerm } = useGlobalContext()
-  const handleChange = (e) =>{
+  const handleChange = (e) => {
     setSearchTerm(e.target.value)
   }
   return (
-    <div>
-      <h2>search form component</h2>
-      <input 
-      type="search"
-      placeholder="Martini"
-      onChange ={handleChange}
-       />
-    </div>
+    <section className="section search">
+      <form className="search-form">
+        <div className="form-control">
+          <label>Search For a Drink</label>
+          <input
+            type="search"
+            placeholder="Martini"
+            onChange={handleChange}
+          />
+        </div>
+      </form>
+    </section>
   )
 }
 

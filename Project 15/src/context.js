@@ -12,12 +12,14 @@ const AppProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState("")
 
   const pullData = async () => {
+    setLoading(true)
     try {
       const { data } = await axios(url)
       setDrinksList(data.drinks)
-      console.log(drinksList)
+      // console.log(drinksList)
+      setLoading(false)
     } catch (error) {
-      console.log("")
+      console.log(error.response)
     }
   }
 
