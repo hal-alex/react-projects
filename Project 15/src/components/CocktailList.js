@@ -1,5 +1,4 @@
 import React from 'react'
-import Cocktail from './Cocktail'
 import Loading from './Loading'
 import { useGlobalContext } from '../context'
 import { Link } from 'react-router-dom'
@@ -9,9 +8,7 @@ const CocktailList = () => {
   const { drinksList, searchTerm, loading } = useGlobalContext()
 
   const filteredResults = drinksList.filter(item =>
-    item["strDrink"].
-      toLowerCase().
-      includes(searchTerm.toLowerCase()))
+    item["strDrink"].toLowerCase().includes(searchTerm.toLowerCase()))
 
   // console.log(filteredResults)
 
