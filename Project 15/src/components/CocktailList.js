@@ -8,9 +8,7 @@ const CocktailList = () => {
   const { drinksList, searchTerm, loading } = useGlobalContext()
 
   const filteredResults = drinksList.filter(item =>
-    item["strDrink"].
-      toLowerCase().
-      includes(searchTerm.toLowerCase()))
+    item["strDrink"].toLowerCase().includes(searchTerm.toLowerCase()))
 
   // console.log(filteredResults)
 

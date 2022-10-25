@@ -2,7 +2,6 @@ import React from 'react'
 import { useGlobalContext } from "../context"
 import { useParams, Link } from 'react-router-dom'
 import Cocktail from '../components/Cocktail'
-const url = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i='
 
 const SingleCocktail = () => {
 
