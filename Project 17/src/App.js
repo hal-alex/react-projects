@@ -33,21 +33,23 @@
 //   }
 
 //   const handleHover = (e) => {
-//     let targetVal = e.target.value
-//     setTitleText(targetVal)
-//     setDivText(() => {
-//       if (targetVal === "name") {
-//         return userData.name.first
-//       } else if (targetVal === "age") {
-//         return userData.dob.age
-//       } else if (targetVal === "location") {
-//         return `${userData.location.street.number} ${userData.location.street.name}`
-//       } else if (targetVal === "password") {
-//         return userData.login.password
-//       } else {
-//         return userData[`${targetVal}`]
-//       }
-//     })
+//     if (e.target.classList.contains("icon")) {
+//       let targetVal = e.target.value
+//       setTitleText(targetVal)
+//       setDivText(() => {
+//         if (targetVal === "name") {
+//           return userData.name.first
+//         } else if (targetVal === "age") {
+//           return userData.dob.age
+//         } else if (targetVal === "location") {
+//           return `${userData.location.street.number} ${userData.location.street.name}`
+//         } else if (targetVal === "password") {
+//           return userData.login.password
+//         } else {
+//           return userData[`${targetVal}`]
+//         }
+//       })
+//     }
 //   }
 
 //   useEffect(() => {
@@ -135,24 +137,49 @@ const defaultImage = 'https://randomuser.me/api/portraits/men/75.jpg'
 function App() {
 
   const [isLoading, setIsLoading] = useState(true)
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState([])
   const [title, setTitle] = useState("name")
-  const [attribute, setAttribute] = useState("lorem ipsum")
+  const [attribute, setAttribute] = useState("")
 
-  const pullData = async() => {
-    const response = await axios(url)
-    console.log(response)
+  const pullData = async () => {
+    const response = await axios.get(url)
+    // setUser(response.data.results[0])
+    const person = response.data.results[0]
+    // console.log(person)
+    const { phone, email } = person
+    // console.log(phone)
+    const { large: image } = person.picture
+    const { password } = person.login
+    const { first, last } = person.name
+    const { age } = person.dob
+    const { street: { number, name } } = person.location
+    const newUser = {
+      phone,
+      email,
+      image,
+      password,
+      age,
+      street: `${number} ${name}`,
+      name: `${first} ${last}`
+    }
+    setUser(newUser)
+    setIsLoading(false)
+    setTitle("name")
+    setAttribute(newUser.name)
   }
 
   useEffect(() => {
     pullData()
   }, [])
 
-
   const handleHover = (e) => {
-    console.log(e)
+    console.log(e.target)
+    if (e.target.classList.contains("icon")) {
+      const label = e.target.dataset.label
+      setTitle(label)
+      setAttribute(user[label])
+    }
   }
-
 
   return (
     <main>
@@ -185,7 +212,7 @@ function App() {
               data-label="password"
               onMouseOver={handleHover}> <FaLock></FaLock> </button>
           </div>
-          <button className="btn" type="button">
+          <button className="btn" type="button" onClick={pullData}>
             {isLoading ? "Loading..." : "Generate User"} </button>
         </div>
       </div>
