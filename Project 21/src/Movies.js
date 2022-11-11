@@ -5,7 +5,24 @@ const url =
   'https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png'
 
 const Movies = () => {
-  return <h2>movies component</h2>
+
+  const { movies } = useGlobalContext()
+  return (
+    <section className="movies">
+      {movies.map(movie => {
+        return <Link key={movie.imdbID} className="movie" to={`/movies/${movie.imdbID}`}>
+          <article>
+            <img src={movie.Poster === "N/A" ? url : movie.Poster} alt={movie.Title} />
+            <div className="movie-info">
+              <h4 className="title">{movie.Title}</h4>
+              <p>{movie.Year}</p>
+            </div>
+          </article>
+
+        </Link>
+      })}
+    </section>
+  )
 }
 
 export default Movies
